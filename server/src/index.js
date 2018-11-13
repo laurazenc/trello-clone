@@ -1,7 +1,88 @@
 const { GraphQLServer } = require("graphql-yoga");
+const passport = require("passport");
+require("dotenv").config();
+
+import redis from "./redis";
+
 const { genSchema } = require("./schemas");
+const { connectDatabase } = require("./db");
+
+const session = require("express-session");
+const RedisStore = require("connect-redis")(session);
+const { redisSessionPrefix } = require("./utils/constants");
+
+import { ghStrategy, ghConnect } from "./utils/strategies/githubStrategy";
 
 const schema = genSchema();
 
-const server = new GraphQLServer({ schema });
-server.start(() => console.log("Server is running on localhost:4000"));
+passport.use(ghStrategy);
+
+const store = new RedisStore({
+  client: redis,
+  prefix: redisSessionPrefix
+});
+
+connectDatabase();
+
+const server = new GraphQLServer({
+  schema,
+  context: ({ request, response }) => ({
+    redis,
+    url: `${request.protocol}://${request.get("host")}`,
+    session: request.session,
+    req: request,
+    res: response
+  })
+});
+
+server.express.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    store,
+    name: "qid",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
+    }
+  })
+);
+
+server.express.use(passport.initialize());
+server.express.use(passport.session());
+
+server.express.use((req, res, next) => {
+  if (!req.session) {
+    return next(new Error("oh no")); // handle error
+  }
+  return next(); // otherwise continue
+});
+
+server.express.get("/auth/github", ghConnect, (req, res, next) => {
+  console.log("res", res);
+  next();
+});
+server.express.get("/auth/github/callback", ghConnect, function(
+  req,
+  res,
+  next
+) {
+  // Successful authentication, redirect home.
+  res.redirect("/");
+  next();
+});
+
+server.start(
+  {
+    cors: {
+      credentials: process.env.NODE_ENV === "test" ? "include" : true,
+      origin: process.env.NODE_ENV === "test" ? "*" : process.env.FRONTEND_URL
+    },
+    port: process.env.PORT || process.env.SERVER_PORT
+  },
+  ({ port }) => {
+    console.log(`[⚙️ ] Server is up and running at http://localhost:${port}`);
+  }
+);
