@@ -4,6 +4,8 @@ module.exports = {
   transform: {
     "^.+\\.jsx?$": "babel-jest"
   },
-  testPathIgnorePatterns: ignoredPaths
+  testPathIgnorePatterns: ignoredPaths,
+  coverageDirectory: "coverage",
+  forceExit: true
   //   testEnvironment: "./src/utils/test/test-environment"
 };
