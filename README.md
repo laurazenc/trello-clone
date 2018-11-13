@@ -1,20 +1,20 @@
 [![Build Status](https://travis-ci.com/laurazenc/trello-clone.svg?branch=master)](https://travis-ci.com/laurazenc/trello-clone)
 [![codecov](https://codecov.io/gh/laurazenc/trello-clone/branch/master/graph/badge.svg)](https://codecov.io/gh/laurazenc/trello-clone)
 
-# [WIP] trello-clone
+# trello-clone
 
-## Technologies
+## Technologies
 
-- Backend
+- **Backend**
   - Graphql
   - Mongodb
   - Passport (Google)
-- Frontend
+- **Frontend**
   - Apollo
   - Storybook
   -
 
-## Relationships
+## Relationships
 
 **BOARD** belongs to a **TEAM** which is form by **USERS**
 
