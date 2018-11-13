@@ -5,7 +5,8 @@ module.exports = {
     "^.+\\.jsx?$": "babel-jest"
   },
   testPathIgnorePatterns: ignoredPaths,
-  coverageDirectory: "coverage",
+  "coverageDirectory": "./coverage/",
+  "collectCoverage": true,
   forceExit: true
   //   testEnvironment: "./src/utils/test/test-environment"
 };
