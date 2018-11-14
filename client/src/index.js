@@ -10,11 +10,12 @@ import { client } from "./apollo";
 import * as serviceWorker from "./serviceWorker";
 
 const theme = {
-  primaryColor: "#FF5A5F",
-  linkColor: "#008489",
-  textColor: "#484848",
-  textColorSecondary: "#585A3A",
-  borderColorBase: "#E5E5E5",
+  primaryColor: "#4786FF",
+  linkColor: "#4786FF",
+  textColor: "#1B2437",
+  iconColor: "#E0E2E5",
+  textColorSecondary: "#9A9C9F",
+  borderColorBase: "#F0F1F4",
   boxShadowBase: "0 2px 4px rgba(0,0,0,0.1)"
 };
 
