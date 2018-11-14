@@ -1,3 +1,35 @@
+type Error {
+  path: String
+  message: String
+}
+
+type User {
+  _id: ID!
+  email: String!
+  displayName: String!
+  password: String!
+}
+
+type RegisterResponse {
+  errors: [Error!]
+  result: Boolean
+}
+
+type AuthResponse {
+  errors: [Error!]
+  session: String
+}
+
 type Query {
   hello(name: String): String!
+}
+
+type Mutation {
+  register(
+    email: String!
+    displayName: String!
+    password: String!
+    confirmPassword: String!
+  ): RegisterResponse!
+  login(email: String!, password: String!): AuthResponse!
 }
