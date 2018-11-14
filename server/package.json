@@ -5,6 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon src/index.js --exec babel-node ",
+    "build": "babel src --out-dir dist",
+    "server": "node dist/index.js",
     "start-test": "NODE_ENV=test yarn start",
     "test": "jest --verbose -i",
     "coverage": "codecov -t process.env.CODECOV_TOKEN"
