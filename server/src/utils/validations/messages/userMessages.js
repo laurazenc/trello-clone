@@ -8,5 +8,7 @@ export const userMessages = {
   invalidEmail: "Email must be a valid email",
   confirmPasswordDoesntMatch: "Confirm password doesn't match",
   emailAlreadyExists: "Email already exists",
-  invalidLogin: "Invalid login"
+  invalidLogin: "Invalid login",
+  userDoesNotExist: "There is no user associated to this email",
+  invalidUser: "Invalid user"
 };
