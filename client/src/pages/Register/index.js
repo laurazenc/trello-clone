@@ -5,6 +5,8 @@ import gql from "graphql-tag";
 import withFullScreenLayout from "./../../layouts/FullScreenLayout";
 import RegisterView from "./RegisterView";
 
+import { userMessages } from "./../../utils/validations/messages/userMessages";
+
 const REGISTER_MUTATION = gql`
   mutation REGISTER_MUTATION(
     $email: String!
@@ -35,15 +37,11 @@ class Register extends Component {
       }
     } = values;
 
-    const {
-      history,
-      location: { state },
-      client
-    } = this.props;
-
-    client.resetStore();
-
-    if (!errors) history.push(state ? state.next : "/");
+    const { history } = this.props;
+    if (!errors)
+      history.push("/t/confirm-email", {
+        message: userMessages.confirmEmail
+      });
   };
   render() {
     return (
