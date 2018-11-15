@@ -7,5 +7,8 @@ export const userMessages = {
   emailNotConfirmed: "Email not confirmed",
   confirmPasswordDoesntMatch: "Confirm password doesn't match",
   emailAlreadyExists: "Email already exists",
-  invalidLogin: "Invalid login"
+  invalidLogin: "Invalid login",
+  confirmEmail:
+    "Congrats you have successfully register! Please, check your email to confirm your account.",
+  confirmedAccount: "Your email has been confirmed!"
 };
