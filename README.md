@@ -53,3 +53,14 @@
     - userId
     - tags
     - listId
+
+
+
+# ROADMAP
+
+- [x] User auth (Server & Client)
+- [ ] Confirm account and forgot password emails
+- [ ] Github login (Only server for now)
+- [ ] Route permissions
+
+...
