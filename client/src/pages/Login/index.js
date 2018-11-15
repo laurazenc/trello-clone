@@ -21,11 +21,9 @@ class Login extends Component {
   onFinish = values => {
     const {
       data: {
-        login: { errors, session }
+        login: { errors }
       }
     } = values;
-
-    console.log("values", values);
 
     const {
       history,
