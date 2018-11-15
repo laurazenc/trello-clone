@@ -1,4 +1,8 @@
 const redis = require("redis");
+const bluebird = require("bluebird");
+
+bluebird.promisifyAll(redis.RedisClient.prototype);
+bluebird.promisifyAll(redis.Multi.prototype);
 
 const redisHost = process.env.NODE_ENV === "production" ? "redis" : "127.0.0.1";
 const redisPort = "6379";

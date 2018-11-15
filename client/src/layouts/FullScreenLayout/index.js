@@ -38,7 +38,9 @@ const withFullScreenLayout = ChildComponent => {
       return (
         <FullLayout>
           <Header>
-            <Logo src={logoSvg} alt="logo" />
+            <a href="/">
+              <Logo src={logoSvg} alt="logo" />
+            </a>
           </Header>
           <Content>
             <ChildComponent {...this.props} />

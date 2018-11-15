@@ -5,8 +5,6 @@ require("dotenv").config();
 
 const dbUri = `mongodb://localhost:27017/${process.env.DATABASE_URI_TEST}`;
 
-console.log("dbUri", dbUri);
-
 export async function connectMongoose() {
   jest.setTimeout(20000);
   return mongoose.connect(

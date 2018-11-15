@@ -18,12 +18,24 @@ const LOGIN_MUTATION = gql`
 `;
 
 class Login extends Component {
+  state = {
+    message: null
+  };
+  componentDidMount = () => {
+    const {
+      location: { state }
+    } = this.props;
+
+    if (state && state.message) this.setState({ message: state.message });
+  };
   onFinish = values => {
     const {
       data: {
         login: { errors }
       }
     } = values;
+
+    this.setState({ message: null });
 
     const {
       history,
@@ -46,6 +58,7 @@ class Login extends Component {
               error={error}
               data={data}
               loading={loading}
+              state={this.state.message}
             />
           );
         }}

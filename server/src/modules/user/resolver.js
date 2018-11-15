@@ -1,5 +1,6 @@
 import { register } from "./register";
 import { login } from "./login";
+import { sendForgotPasswordEmail, changePassword } from "./forgotPassword";
 
 export const resolvers = {
   Query: {
@@ -9,6 +10,8 @@ export const resolvers = {
   },
   Mutation: {
     register,
-    login
+    login,
+    forgotPassword: sendForgotPasswordEmail,
+    changePassword
   }
 };
