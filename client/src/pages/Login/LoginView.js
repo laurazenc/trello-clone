@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { InputField } from "./../../components/Fields/InputField";
 import { Button } from "./../../components/Button";
 import { Divider } from "./../../components/Divider";
+import { NotificationMessage } from "./../../components/NotificationMessage";
 
 import { loginSchema } from "./../../utils/validations/userSchema";
 
@@ -22,36 +23,24 @@ const Row = styled.div`
   }
 `;
 
-const ErrorMessage = styled.div`
-  height: 35px;
-  background-color: ${props => props.theme.erroBackground};
-  line-height: 35px;
-  padding: 0 8px;
-  color: ${props => props.theme.errorColor};
-  border-radius: 3px;
-
-  i {
-    color: ${props => props.theme.errorColor};
-    font-size: 14px;
-    margin-right: 8px;
-    line-height: 30px;
-  }
-`;
-
 class LoginView extends Component {
   render() {
-    const { handleSubmit, data } = this.props;
+    const { handleSubmit, data, state } = this.props;
+
+    const stateMessage = state ? (
+      <NotificationMessage type="success">{state}</NotificationMessage>
+    ) : null;
 
     const errorMsg =
       data && data.login.errors && data.login.errors.length ? (
-        <ErrorMessage>
-          <i className="fas fa-times-circle" />
+        <NotificationMessage type="error">
           {data.login.errors[0].message}
-        </ErrorMessage>
+        </NotificationMessage>
       ) : null;
 
     return (
       <form className="login-form" onSubmit={handleSubmit}>
+        {stateMessage}
         {errorMsg}
         <Field
           name="email"
