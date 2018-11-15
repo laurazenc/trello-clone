@@ -1,11 +1,15 @@
 {
   "name": "trello-clone-server",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Trello clone server using GraphQL",
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon src/index.js --exec babel-node ",
-    "test": "jest"
+    "build": "babel src --out-dir dist",
+    "server": "node dist/index.js",
+    "start-test": "NODE_ENV=test yarn start",
+    "test": "jest --verbose -i",
+    "coverage": "codecov -t process.env.CODECOV_TOKEN"
   },
   "repository": {
     "type": "git",
@@ -21,12 +25,24 @@
   },
   "homepage": "https://github.com/laurazenc/trello-clone#readme",
   "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
+    "bluebird": "^3.5.3",
+    "connect-redis": "^3.4.0",
     "dotenv": "^6.1.0",
+    "express-session": "^1.15.6",
+    "faker": "^4.1.0",
     "graphql-yoga": "^1.16.7",
+    "ioredis": "^4.2.0",
     "jest": "^23.6.0",
+    "jest-fetch-mock": "^1.7.4",
     "merge-graphql-schemas": "^1.5.7",
+    "mongoose": "^5.3.11",
+    "nodemailer": "^4.6.8",
     "passport": "^0.4.0",
-    "passport-github": "^1.1.0"
+    "passport-github": "^1.1.0",
+    "request-promise": "^4.2.2",
+    "uuid": "^3.3.2",
+    "yup": "^0.26.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
@@ -36,6 +52,10 @@
     "@babel/preset-env": "^7.1.5",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.4.2",
+    "codecov": "^3.1.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mongodb-memory-server": "^2.7.2",
     "nodemon": "^1.18.6",
     "yarn": "^1.12.3"
   }

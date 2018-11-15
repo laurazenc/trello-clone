@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.com/laurazenc/trello-clone.svg?branch=master)](https://travis-ci.com/laurazenc/trello-clone)
-[![codecov](https://codecov.io/gh/laurazenc/trello-clone/branch/master/graph/badge.svg)](https://codecov.io/gh/laurazenc/trello-clone)
 
 # trello-clone
 
@@ -53,3 +52,16 @@
     - userId
     - tags
     - listId
+
+# ROADMAP
+
+- [x] User auth (Server & Client)
+- [x] Confirm account and forgot password emails
+- [ ] Github login (Only server for now)
+- [ ] Route permissions
+
+...
+
+# SCREEN FLOW
+
+![Screen flow](https://github.com/laurazenc/trello-clone/raw/master/images/auth_flow.png)
