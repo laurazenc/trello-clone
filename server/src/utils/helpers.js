@@ -55,3 +55,8 @@ export const sendEmail = async (recipient, url, linkText) => {
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   });
 };
+
+const hexRegex = new RegExp("^[0-9a-fA-F]{24}$");
+export const isValidId = id => {
+  return hexRegex.test(id);
+};
