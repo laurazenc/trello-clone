@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/laurazenc/trello-clone.svg?branch=master)](https://travis-ci.com/laurazenc/trello-clone)
-[![codecov](https://codecov.io/gh/laurazenc/trello-clone/branch/master/graph/badge.svg)](https://codecov.io/gh/laurazenc/trello-clone)
+
 
 # trello-clone
 
