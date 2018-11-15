@@ -47,4 +47,36 @@ export class TestServer {
       }
     });
   }
+
+  async forgotPassword(email) {
+    return rp.post(this.url, {
+      ...this.options,
+      body: {
+        query: `
+          mutation {
+            forgotPassword(email: "${email}")
+          }
+        `
+      }
+    });
+  }
+
+  async changePassword(newPassword, key) {
+    return rp.post(this.url, {
+      ...this.options,
+      body: {
+        query: `
+          mutation {
+            changePassword(newPassword: "${newPassword}", key: "${key}") {
+              errors {
+                path
+                message
+              }
+              result
+            }
+          }
+        `
+      }
+    });
+  }
 }
