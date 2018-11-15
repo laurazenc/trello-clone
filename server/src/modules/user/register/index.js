@@ -24,13 +24,19 @@ export const register = async (_, { email, ...rest }, { redis, url }) => {
       ...rest
     });
 
-    const confirmEmailUrl = await createConfirmEmailLink(url, user._id, redis);
+    if (process.env.NODE_ENV !== "test") {
+      const confirmEmailUrl = await createConfirmEmailLink(
+        url,
+        user._id,
+        redis
+      );
 
-    await sendEmail(
-      email,
-      confirmEmailUrl,
-      "Click here to activate your account!"
-    );
+      await sendEmail(
+        email,
+        confirmEmailUrl,
+        "Click here to activate your account!"
+      );
+    }
 
     return { result: true };
   } catch (e) {

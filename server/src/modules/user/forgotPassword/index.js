@@ -19,13 +19,15 @@ export const sendForgotPasswordEmail = async (_, { email }, { redis }) => {
   user.accountLocked = true;
   await user.save();
 
-  const url = await createForgotPasswordLink(
-    process.env.FRONTEND_URL,
-    user._id,
-    redis
-  );
+  if (process.env.NODE_ENV !== "test") {
+    const url = await createForgotPasswordLink(
+      process.env.FRONTEND_URL,
+      user._id,
+      redis
+    );
 
-  await sendEmail(email, url, "Click here to reset your password!");
+    await sendEmail(email, url, "Click here to reset your password!");
+  }
 
   return true;
 };
