@@ -10,7 +10,7 @@ type User {
   password: String!
 }
 
-type RegisterResponse {
+type ResultResponse {
   errors: [Error!]
   result: Boolean
 }
@@ -30,6 +30,8 @@ type Mutation {
     displayName: String!
     password: String!
     confirmPassword: String!
-  ): RegisterResponse!
+  ): ResultResponse!
   login(email: String!, password: String!): AuthResponse!
+  forgotPassword(email: String!): Boolean!
+  changePassword(newPassword: String!, key: String!): ResultResponse!
 }
