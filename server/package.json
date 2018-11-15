@@ -1,6 +1,6 @@
 {
   "name": "trello-clone-server",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Trello clone server using GraphQL",
   "main": "src/index.js",
   "scripts": {

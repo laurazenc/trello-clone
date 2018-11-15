@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.com/laurazenc/trello-clone.svg?branch=master)](https://travis-ci.com/laurazenc/trello-clone)
 
-
 # trello-clone
 
 ## Technologies
@@ -54,13 +53,15 @@
     - tags
     - listId
 
-
-
 # ROADMAP
 
 - [x] User auth (Server & Client)
-- [ ] Confirm account and forgot password emails
+- [x] Confirm account and forgot password emails
 - [ ] Github login (Only server for now)
 - [ ] Route permissions
 
 ...
+
+# SCREEN FLOW
+
+![Screen flow](https://github.com/laurazenc/trello-clone/raw/master/images/auth_flow.png)
