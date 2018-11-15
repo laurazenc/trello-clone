@@ -12,6 +12,7 @@ const RedisStore = require("connect-redis")(session);
 const { redisSessionPrefix } = require("./utils/constants");
 
 import { ghStrategy, ghConnect } from "./utils/strategies/githubStrategy";
+import { confirmUser } from "./modules/user/register/confirmUser";
 
 const schema = genSchema();
 
@@ -59,6 +60,8 @@ server.express.use((req, res, next) => {
   }
   return next(); // otherwise continue
 });
+
+server.express.get("/confirm/:id", confirmUser);
 
 server.express.get("/auth/github", ghConnect, (req, res, next) => {
   console.log("res", res);
