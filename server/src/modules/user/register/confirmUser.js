@@ -2,21 +2,24 @@ import mongoose from "mongoose";
 import User from "./../../../models/User";
 import redis from "./../../../redis";
 
-import { handleErrors, formatYupErrors } from "./../../../utils/helpers";
+import { isValidId } from "./../../../utils/helpers";
 
-export const confirmUser = async (req, res) => {
+export const confirmUser = async (req, res, next) => {
   const { id } = req.params;
   let userId = null;
-  redis.get(id, async (error, result) => {
-    if (error) {
-      const { path, message } = formatYupErrors(error)[0];
-      return handleErrors(path, message);
-    }
-    userId = result;
+  try {
+    userId = await redis.getAsync(id);
     if (userId) {
-      if (!mongoose.Types.ObjectId.isValid(userId)) res.send("invalid");
+      if (!isValidId(userId)) {
+        res.send("invalid");
+        return next();
+      }
       let user = await User.findById(userId);
-      if (!user) res.send("invalid");
+
+      if (!user) {
+        res.send("invalid");
+        return next();
+      }
 
       user.confirmed = true;
       await user.save();
@@ -25,5 +28,7 @@ export const confirmUser = async (req, res) => {
     } else {
       res.send("invalid");
     }
-  });
+  } catch (e) {
+    res.send("invalid");
+  }
 };
