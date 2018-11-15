@@ -38,7 +38,7 @@ export const changePassword = async (_, { newPassword, key }, { redis }) => {
     userId = await redis.getAsync(redisKey);
 
     if (!userId) {
-      return handleErrors("newPassword", userMessages.userDoesNotExist);
+      return handleErrors("newPassword", userMessages.invalidSession);
     }
     if (!isValidId(userId)) {
       return handleErrors("newPassword", userMessages.invalidUser);
@@ -47,9 +47,8 @@ export const changePassword = async (_, { newPassword, key }, { redis }) => {
     if (!user)
       return handleErrors("newPassword", userMessages.userDoesNotExist);
 
-    const hashedPassword = await hashSync(newPassword);
     user.accountLocked = false;
-    user.password = hashedPassword;
+    user.password = newPassword;
     await user.save();
     await redis.del(redisKey);
 
