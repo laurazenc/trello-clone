@@ -1,13 +1,19 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 
 import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+
+import FancyRoute from "./components/FancyRoute";
 
 class Routes extends Component {
   render() {
     return (
       <Switch>
-        <Route exact to="/" component={Home} />
+        <FancyRoute exact path="/" component={Home} />
+        <FancyRoute exact path="/register" component={Register} />
+        <FancyRoute exact path="/login" component={Login} />
       </Switch>
     );
   }

@@ -10,33 +10,51 @@ import { client } from "./apollo";
 import * as serviceWorker from "./serviceWorker";
 
 const theme = {
-  primaryColor: "#FF5A5F",
-  linkColor: "#008489",
-  textColor: "#484848",
-  textColorSecondary: "#585A3A",
-  borderColorBase: "#E5E5E5",
+  primaryColor: "#4786FF",
+  linkColor: "#4786FF",
+  textColor: "#1B2437",
+  iconColor: "#E0E2E5",
+  errorColor: "#F1453D",
+  erroBackground: "#FEF2F2",
+  textColorSecondary: "#9A9C9F",
+  borderColorBase: "#E0E2E5",
+  focusShadow: "0 0 0 2px rgba(134, 177, 255, 0.5)",
+  shadowColor: "rgba(134, 177, 255, 0.5)",
   boxShadowBase: "0 2px 4px rgba(0,0,0,0.1)"
 };
 
 const GlobalStyle = createGlobalStyle`
-html {
+
+  @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,700|Roboto");
+
+
+  html {
     box-sizing: border-box;
-    font-size: 12px;
   }
+
   *, *:before, *:after {
     box-sizing: inherit;
+  }
+
+  body {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
   }
 `;
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <ApolloProvider client={client}>
+  <ApolloProvider client={client}>
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Routes />
+        <React.Fragment>
+          <Routes />
+          <GlobalStyle />
+        </React.Fragment>
       </BrowserRouter>
-      <GlobalStyle />
-    </ApolloProvider>
-  </ThemeProvider>,
+    </ThemeProvider>
+  </ApolloProvider>,
   document.getElementById("root")
 );
 
