@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import User from "./../../../models/User";
 import redis from "./../../../redis";
 
@@ -24,7 +23,11 @@ export const confirmUser = async (req, res, next) => {
       user.confirmed = true;
       await user.save();
       await redis.del(id);
-      res.redirect(`${process.env.FRONTEND_URL}/t/confirmed-account`);
+      if (process.env.NODE_ENV !== "test") {
+        res.redirect(`${process.env.FRONTEND_URL}/t/confirmed-account`);
+      } else {
+        res.redirect("/");
+      }
     } else {
       res.send("invalid");
     }
