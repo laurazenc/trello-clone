@@ -20,8 +20,8 @@ export const confirmUser = async (req, res) => {
 
       user.confirmed = true;
       await user.save();
-      const result = await redis.del(id);
-      res.redirect(`${process.env.FRONTEND_HOST}/login`);
+      await redis.del(id);
+      res.redirect(`${process.env.FRONTEND_URL}/t/confirmed-account`);
     } else {
       res.send("invalid");
     }
