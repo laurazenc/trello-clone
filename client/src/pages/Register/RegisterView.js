@@ -23,7 +23,7 @@ const Row = styled.div`
 
 const ErrorMessage = styled.div`
   height: 35px;
-  background-color: ${props => props.theme.erroBackground};
+  background-color: ${props => props.theme.errorBackground};
   line-height: 35px;
   padding: 0 8px;
   color: ${props => props.theme.errorColor};
