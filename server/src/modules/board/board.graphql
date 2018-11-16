@@ -1,0 +1,18 @@
+type Board {
+  _id: ID!
+  name: String!
+  owner: User!
+}
+
+type ResultBoard {
+  errors: [Error!]
+  result: Board
+}
+
+type Query {
+  getUsersBoards: [Board!]
+}
+
+type Mutation {
+  createBoard(name: String!): ResultBoard!
+}
