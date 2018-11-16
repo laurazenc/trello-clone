@@ -118,4 +118,25 @@ export class TestServer {
       }
     });
   }
+
+  async me() {
+    return rp.post(this.url, {
+      ...this.options,
+      body: {
+        query: `
+           {
+            me {
+              errors {
+                path
+                message
+              }
+              result {
+                email
+              }
+            }
+          }
+        `
+      }
+    });
+  }
 }
