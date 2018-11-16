@@ -79,4 +79,43 @@ export class TestServer {
       }
     });
   }
+
+  async createBoard(name) {
+    return rp.post(this.url, {
+      ...this.options,
+      body: {
+        query: `
+          mutation {
+            createBoard(name: "${name}") {
+              errors {
+                path
+                message
+              }
+              result {
+                name
+              }
+            }
+          }
+        `
+      }
+    });
+  }
+
+  async getUsersBoards() {
+    return rp.post(this.url, {
+      ...this.options,
+      body: {
+        query: `
+           {
+            getUsersBoards {
+              name
+              owner {
+                email
+              }
+            }
+          }
+        `
+      }
+    });
+  }
 }
