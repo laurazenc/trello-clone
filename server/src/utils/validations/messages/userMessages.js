@@ -11,5 +11,6 @@ export const userMessages = {
   invalidLogin: "Invalid login",
   userDoesNotExist: "There is no user associated to this email",
   invalidUser: "Invalid user",
-  invalidSession: "Link has expired"
+  invalidSession: "Link has expired",
+  invalidSession: "Invalid session"
 };
