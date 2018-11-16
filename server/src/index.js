@@ -6,6 +6,8 @@ import redis from "./redis";
 
 const { genSchema } = require("./schemas");
 const { connectDatabase } = require("./db");
+const { authMiddleware } = require("./middlewares/authMiddleware");
+const { userLoader } = require("./loaders/userLoader");
 
 const session = require("express-session");
 const RedisStore = require("connect-redis")(session);
@@ -25,6 +27,8 @@ const store = new RedisStore({
 
 connectDatabase();
 
+const middlewares = [authMiddleware];
+
 const server = new GraphQLServer({
   schema,
   context: ({ request, response }) => ({
@@ -32,8 +36,10 @@ const server = new GraphQLServer({
     url: `${request.protocol}://${request.get("host")}`,
     session: request.session,
     req: request,
-    res: response
-  })
+    res: response,
+    userLoader: userLoader()
+  }),
+  middlewares
 });
 
 server.express.use(
