@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { ApolloProvider } from "react-apollo";
 
-import Routes from "./Routes";
+import { Routes } from "./Routes";
 import { client } from "./apollo";
 
 import * as serviceWorker from "./serviceWorker";
@@ -49,12 +48,10 @@ const GlobalStyle = createGlobalStyle`
 ReactDOM.render(
   <ApolloProvider client={client}>
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <React.Fragment>
-          <Routes />
-          <GlobalStyle />
-        </React.Fragment>
-      </BrowserRouter>
+      <React.Fragment>
+        <Routes />
+        <GlobalStyle />
+      </React.Fragment>
     </ThemeProvider>
   </ApolloProvider>,
   document.getElementById("root")
