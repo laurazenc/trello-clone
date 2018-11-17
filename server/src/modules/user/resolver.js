@@ -1,12 +1,11 @@
 import { register } from "./register";
 import { login } from "./login";
+import { me } from "./me";
 import { sendForgotPasswordEmail, changePassword } from "./forgotPassword";
 
 export const resolvers = {
   Query: {
-    hello: (_, { name }) => {
-      return `Welcome!`;
-    }
+    me
   },
   Mutation: {
     register,

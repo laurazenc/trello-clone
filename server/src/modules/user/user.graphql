@@ -1,8 +1,3 @@
-type Error {
-  path: String
-  message: String
-}
-
 type User {
   _id: ID!
   email: String!
@@ -20,8 +15,13 @@ type AuthResponse {
   session: String
 }
 
+type ProfileResponse {
+  errors: [Error!]
+  result: User
+}
+
 type Query {
-  hello(name: String): String!
+  me: ProfileResponse!
 }
 
 type Mutation {

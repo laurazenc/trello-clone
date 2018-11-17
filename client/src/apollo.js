@@ -1,8 +1,8 @@
 import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import { HttpLink } from "apollo-link-http";
+import { createUploadLink } from "apollo-upload-client";
 
-const link = new HttpLink({
+const link = new createUploadLink({
   uri: "http://localhost:4000",
   credentials: "include"
 });

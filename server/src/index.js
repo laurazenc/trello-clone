@@ -6,6 +6,8 @@ import redis from "./redis";
 
 const { genSchema } = require("./schemas");
 const { connectDatabase } = require("./db");
+const { authMiddleware } = require("./middlewares/authMiddleware");
+const { userLoader } = require("./loaders/userLoader");
 
 const session = require("express-session");
 const RedisStore = require("connect-redis")(session);
@@ -25,15 +27,19 @@ const store = new RedisStore({
 
 connectDatabase();
 
+const middlewares = [authMiddleware];
+
 const server = new GraphQLServer({
   schema,
   context: ({ request, response }) => ({
     redis,
     url: `${request.protocol}://${request.get("host")}`,
-    session: request.session,
+    session: request ? request.session : undefined,
     req: request,
-    res: response
-  })
+    res: response,
+    userLoader: userLoader()
+  }),
+  middlewares
 });
 
 server.express.use(
@@ -64,7 +70,6 @@ server.express.use((req, res, next) => {
 server.express.get("/confirm/:id", confirmUser);
 
 server.express.get("/auth/github", ghConnect, (req, res, next) => {
-  console.log("res", res);
   next();
 });
 server.express.get("/auth/github/callback", ghConnect, function(

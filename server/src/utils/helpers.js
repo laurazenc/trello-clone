@@ -13,12 +13,19 @@ export const handleErrors = (path, message) => ({
 export const formatYupErrors = err => {
   const errors = [];
   if (err && err.inner) {
-    err.inner.forEach(e => {
+    if (!err.inner.length) {
       errors.push({
-        path: e.path,
-        message: e.message
+        path: err.path,
+        message: err.message
       });
-    });
+    } else {
+      err.inner.forEach(e => {
+        errors.push({
+          path: e.path,
+          message: e.message
+        });
+      });
+    }
   }
 
   return errors;

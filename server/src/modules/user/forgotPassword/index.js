@@ -56,7 +56,6 @@ export const changePassword = async (_, { newPassword, key }, { redis }) => {
 
     return { result: true };
   } catch (err) {
-    console.log("err", err);
     const { path, message } = formatYupErrors(err)[0];
     return handleErrors(path, message);
   }
