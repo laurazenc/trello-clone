@@ -20,6 +20,11 @@ const Btn = styled.button`
   border-radius: 3px;
   box-shadow: 0px 6px 15px 2px ${props => props.theme.shadowColor};
 
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
   &:hover {
     cursor: pointer;
     box-shadow: 0px 5px 8px 0px ${props => props.theme.shadowColor};
