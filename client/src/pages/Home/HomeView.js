@@ -84,7 +84,7 @@ export default class HomeView extends Component {
           <NoBoards openForm={this.openForm} />
         )}
 
-        {!loading && data.getUsersBoards.length && (
+        {!loading && data.getUsersBoards.length > 0 && (
           <BoardList>
             {data.getUsersBoards.map(board => {
               return (
