@@ -34,7 +34,7 @@ const server = new GraphQLServer({
   context: ({ request, response }) => ({
     redis,
     url: `${request.protocol}://${request.get("host")}`,
-    session: request.session,
+    session: request ? request.session : undefined,
     req: request,
     res: response,
     userLoader: userLoader()
@@ -70,7 +70,6 @@ server.express.use((req, res, next) => {
 server.express.get("/confirm/:id", confirmUser);
 
 server.express.get("/auth/github", ghConnect, (req, res, next) => {
-  console.log("res", res);
   next();
 });
 server.express.get("/auth/github/callback", ghConnect, function(
