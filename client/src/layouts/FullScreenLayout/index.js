@@ -4,12 +4,13 @@ import styled from "styled-components";
 const logoSvg = require("./../../assets/trim-logo.svg");
 
 const FullLayout = styled.div`
-  height: 100vh;
+  height: 100%;
   position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
+  background-color: white;
 `;
 
 const Logo = styled.img`

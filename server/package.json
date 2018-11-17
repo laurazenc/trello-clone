@@ -1,6 +1,6 @@
 {
   "name": "trello-clone-server",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Trello clone server using GraphQL",
   "main": "src/index.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.5.3",
     "connect-redis": "^3.4.0",
+    "dataloader": "^1.4.0",
     "dotenv": "^6.1.0",
     "express-session": "^1.15.6",
     "faker": "^4.1.0",
