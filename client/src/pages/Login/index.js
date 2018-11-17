@@ -28,6 +28,7 @@ class Login extends Component {
 
     if (state && state.message) this.setState({ message: state.message });
   };
+
   onFinish = values => {
     const {
       data: {
@@ -35,18 +36,24 @@ class Login extends Component {
       }
     } = values;
 
-    this.setState({ message: null });
+    this.setState({ message: null }, async () => {
+      const {
+        history,
+        location: { state },
+        client
+      } = this.props;
 
-    const {
-      history,
-      location: { state },
-      client
-    } = this.props;
+      if (errors) return null;
 
-    client.resetStore();
+      await client.resetStore();
+      if (state && state.next) {
+        return history.push(state.next);
+      }
 
-    if (!errors) history.push(state ? state.next : "/");
+      history.push("/");
+    });
   };
+
   render() {
     return (
       <Mutation mutation={LOGIN_MUTATION}>
