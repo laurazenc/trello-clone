@@ -12,9 +12,11 @@ const theme = {
   primaryColor: "#4786FF",
   linkColor: "#4786FF",
   textColor: "#1B2437",
+  secondaryTextColor: "#9AA0A6",
+  backgroundColor: "#F6F7FB",
   iconColor: "#E0E2E5",
   errorColor: "#F1453D",
-  successColor: "##c9efe0",
+  successColor: "#c9efe0",
   successBackground: "#82EAC5",
   errorBackground: "#FEF2F2",
   textColorSecondary: "#9A9C9F",
@@ -31,6 +33,8 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     box-sizing: border-box;
+    background-color: ${props => props.theme.backgroundColor};
+
   }
 
   *, *:before, *:after {
