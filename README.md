@@ -7,7 +7,7 @@
 - **Backend**
   - Graphql
   - Mongodb
-  - Passport (Google)
+  - Passport (Github)
 - **Frontend**
   - Apollo
   - Storybook
@@ -23,7 +23,7 @@
 
     - email
     - password
-    - name
+    - displayName
     - photo
     - boards: [Board]
     - teams: [Team]
@@ -37,6 +37,7 @@
 
     - teamId
     - name
+    - lists: [List]
 
 **LISTS**:
 
@@ -58,10 +59,12 @@
 - [x] User auth (Server & Client)
 - [x] Confirm account and forgot password emails
 - [ ] Github login (Only server for now)
-- [ ] Route permissions
+- [x] Route permissions
+- [x] Users boards (Empty state, Get boards and create new boards)
 
 ...
 
 # SCREEN FLOW
 
 ![Screen flow](https://github.com/laurazenc/trello-clone/raw/master/images/auth_flow.png)
+![Screen flow](https://github.com/laurazenc/trello-clone/raw/master/images/boards.png)
