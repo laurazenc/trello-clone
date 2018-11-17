@@ -1,6 +1,6 @@
 import React from "react";
 import FancyRoute from "./../FancyRoute";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -11,6 +11,7 @@ class AuthRoute extends React.PureComponent {
         me {
           result {
             email
+            displayName
           }
           errors {
             path
