@@ -71,4 +71,4 @@
 
 ![Screen flow](https://github.com/laurazenc/trello-clone/raw/master/images/auth_flow.png)
 ![Screen flow](https://github.com/laurazenc/trello-clone/raw/master/images/boards.png)
-![Screen flow](https://github.com/laurazenc/trello-clone/raw/master/images/board_details.png)
+![Screen flow](https://github.com/laurazenc/trello-clone/raw/master/images/board_detail.png)
