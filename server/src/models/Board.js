@@ -1,16 +1,24 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const boardSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    owner: { type: mongoose.Types.ObjectId, ref: "User" }
+    lists: [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }],
+    owner: { type: mongoose.Types.ObjectId, ref: 'User' },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-export default mongoose.model("Board", boardSchema);
+boardSchema.methods = {
+  async addList(listId) {
+    this.lists.push(listId);
+    await this.save();
+  },
+};
+
+export default mongoose.model('Board', boardSchema);
 
 const { ObjectId } = mongoose.Types;
-ObjectId.prototype.valueOf = function() {
+ObjectId.prototype.valueOf = function () {
   return this.toString();
 };

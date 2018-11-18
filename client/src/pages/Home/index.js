@@ -10,6 +10,9 @@ const GETUSERSBOARD_QUERY = gql`
     getUsersBoards {
       _id
       name
+      lists {
+        name
+      }
     }
   }
 `;

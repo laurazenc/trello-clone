@@ -1,6 +1,6 @@
-import Board from "./../../../models/Board";
-import { validBoardSchema } from "./../../../utils/validations/boardSchema";
-import { formatYupErrors, handleErrors } from "./../../../utils/helpers";
+import Board from '../../../models/Board';
+import { validBoardSchema } from '../../../utils/validations/boardSchema';
+import { formatYupErrors, handleErrors } from '../../../utils/helpers';
 
 export const createBoard = async (_, { name }, { session }) => {
   try {
@@ -8,7 +8,7 @@ export const createBoard = async (_, { name }, { session }) => {
 
     const newBoard = await Board.create({
       name,
-      owner: session.userId
+      owner: session.userId,
     });
 
     return { result: newBoard };

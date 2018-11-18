@@ -13,7 +13,7 @@ const theme = {
   linkColor: "#4786FF",
   textColor: "#1B2437",
   secondaryTextColor: "#9AA0A6",
-  backgroundColor: "#F6F7FB",
+  backgroundColor: "#F5F7FA",
   iconColor: "#E0E2E5",
   errorColor: "#F1453D",
   successColor: "#c9efe0",
@@ -28,9 +28,6 @@ const theme = {
 
 const GlobalStyle = createGlobalStyle`
 
-  @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,700|Roboto");
-
-
   html {
     box-sizing: border-box;
     background-color: ${props => props.theme.backgroundColor};
@@ -42,7 +39,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: "Roboto", sans-serif;
+    @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,700");
+    font-family: "Open Sans", sans-serif;
     font-size: 14px;
     margin: 0;
     padding: 0;

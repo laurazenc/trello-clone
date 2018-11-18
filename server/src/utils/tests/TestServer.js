@@ -1,12 +1,12 @@
-const rp = require("request-promise");
+const rp = require('request-promise');
 
 export class TestServer {
   constructor(url) {
-    this.url = url || "http://127.0.0.1:4000";
+    this.url = url || 'http://127.0.0.1:4000';
     this.options = {
       withCredentials: true,
       jar: rp.jar(),
-      json: true
+      json: true,
     };
   }
 
@@ -24,8 +24,8 @@ export class TestServer {
               result
             }
           }
-        `
-      }
+        `,
+      },
     });
   }
 
@@ -43,8 +43,8 @@ export class TestServer {
               session
             }
           }
-        `
-      }
+        `,
+      },
     });
   }
 
@@ -56,8 +56,8 @@ export class TestServer {
           mutation {
             forgotPassword(email: "${email}")
           }
-        `
-      }
+        `,
+      },
     });
   }
 
@@ -75,8 +75,8 @@ export class TestServer {
               result
             }
           }
-        `
-      }
+        `,
+      },
     });
   }
 
@@ -96,8 +96,27 @@ export class TestServer {
               }
             }
           }
-        `
-      }
+        `,
+      },
+    });
+  }
+
+  async createList(name, boardId) {
+    return rp.post(this.url, {
+      ...this.options,
+      body: {
+        query: `
+          mutation {
+            createList(name: "${name}", boardId: "${boardId}") {
+              errors {
+                path
+                message
+              }
+              result
+            }
+          }
+        `,
+      },
     });
   }
 
@@ -114,8 +133,32 @@ export class TestServer {
               }
             }
           }
-        `
-      }
+        `,
+      },
+    });
+  }
+
+  async getBoard(boardId) {
+    return rp.post(this.url, {
+      ...this.options,
+      body: {
+        query: `
+           {
+            getBoard(boardId: "${boardId}") {
+              result {
+                name
+                lists {
+                  name
+                }
+              }
+              errors {
+                path
+                message
+              }
+            }
+          }
+        `,
+      },
     });
   }
 
@@ -135,8 +178,8 @@ export class TestServer {
               }
             }
           }
-        `
-      }
+        `,
+      },
     });
   }
 }
