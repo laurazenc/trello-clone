@@ -1,0 +1,14 @@
+type List {
+  _id: String!
+  name: String!
+  boardId: String!
+}
+
+type ResultList {
+  errors: [Error!]
+  result: Boolean
+}
+
+type Mutation {
+  createList(name: String!, boardId: String!): ResultList!
+}
