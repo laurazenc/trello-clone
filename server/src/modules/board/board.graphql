@@ -1,6 +1,7 @@
 type Board {
-  _id: ID!
+  _id: String!
   name: String!
+  lists: [List!]
   owner: User!
 }
 
@@ -11,6 +12,7 @@ type ResultBoard {
 
 type Query {
   getUsersBoards: [Board!]
+  getBoard(boardId: String!): ResultBoard!
 }
 
 type Mutation {
