@@ -17,19 +17,30 @@ const Row = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 20px;
-  color: ${props => props.theme.textColor};
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: ${props => props.theme.secondaryTextColor};
 `;
 
 const BoardList = styled.div`
   position: relative;
-  margin: 24px 0;
-  display: grid;
-  justify-content: flex-start;
-  grid-template-columns:
-    repeat(auto-fill, 25%)
-    25%;
-  grid-gap: 1rem;
+  margin: 24px auto;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const ListsNumber = styled.div`
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: ${props => props.theme.shadowColor};
+  line-height: 20px;
+  text-align: center;
+  font-weight: 700;
+  color: ${props => props.theme.primaryColor};
 `;
 
 const BoardCard = styled.a`
@@ -39,6 +50,7 @@ const BoardCard = styled.a`
   border-radius: 3px;
   box-shadow: ${props => props.theme.boxShadowBase};
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
   padding: 0 24px;
@@ -84,12 +96,15 @@ export default class HomeView extends Component {
           <NoBoards openForm={this.openForm} />
         )}
 
-        {!loading && data.getUsersBoards.length > 0 && (
+        {!loading && data && data.getUsersBoards.length > 0 && (
           <BoardList>
             {data.getUsersBoards.map(board => {
               return (
                 <BoardCard href={`/board/${board._id}`} key={board._id}>
                   <h3>{board.name}</h3>
+                  {board.lists.length > 0 && (
+                    <ListsNumber>{board.lists.length}</ListsNumber>
+                  )}
                 </BoardCard>
               );
             })}

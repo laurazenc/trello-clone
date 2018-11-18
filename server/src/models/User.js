@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const { hashSync, compareSync } = require("bcrypt-nodejs");
+const mongoose = require('mongoose');
+const { hashSync, compareSync } = require('bcrypt-nodejs');
 
 const UserSchema = new mongoose.Schema(
   {
@@ -9,13 +9,13 @@ const UserSchema = new mongoose.Schema(
     githubId: Number,
     photoUrl: String,
     accountLocked: { type: Boolean, default: false },
-    confirmed: { type: Boolean, default: false }
+    confirmed: { type: Boolean, default: false },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-UserSchema.pre("save", function(next) {
-  if (this.isModified("password")) {
+UserSchema.pre('save', function (next) {
+  if (this.isModified('password')) {
     this.password = this.hashPassword(this.password);
     return next();
   }
@@ -28,7 +28,7 @@ UserSchema.methods = {
   },
   authenticateUser(password) {
     return compareSync(password, this.password);
-  }
+  },
 };
 
-export default mongoose.model("User", UserSchema);
+export default mongoose.model('User', UserSchema);

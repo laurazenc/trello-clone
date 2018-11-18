@@ -61,10 +61,14 @@
 - [ ] Github login (Only server for now)
 - [x] Route permissions
 - [x] Users boards (Empty state, Get boards and create new boards)
-
-...
+- [x] Board details
+- [x] Add lists to board
+- [ ] Edit lists
+- [ ] Add cards to lists
+      ...
 
 # SCREEN FLOW
 
 ![Screen flow](https://github.com/laurazenc/trello-clone/raw/master/images/auth_flow.png)
 ![Screen flow](https://github.com/laurazenc/trello-clone/raw/master/images/boards.png)
+![Screen flow](https://github.com/laurazenc/trello-clone/raw/master/images/board_details.png)
