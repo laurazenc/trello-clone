@@ -1,6 +1,8 @@
 import { getBoard } from './getBoard';
 import { getUsersBoards } from './getUsersBoards';
 import { createBoard } from './create';
+import { editBoard } from './edit';
+import { deleteBoard } from './delete';
 
 export const resolvers = {
   Board: {
@@ -20,5 +22,7 @@ export const resolvers = {
   },
   Mutation: {
     createBoard,
+    editBoard,
+    deleteBoard,
   },
 };

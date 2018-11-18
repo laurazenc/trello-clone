@@ -11,4 +11,6 @@ type ResultList {
 
 type Mutation {
   createList(name: String!, boardId: String!): ResultList!
+  editList(id: String!, name: String!): ResultList!
+  deleteList(id: String!): ResultList!
 }
