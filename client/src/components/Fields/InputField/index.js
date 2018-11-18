@@ -60,6 +60,7 @@ export const InputField = ({
       help={errorMsg}
       hasFeedback={!!errorMsg}
       validateStatus={errorMsg ? "error" : undefined}
+      className="input-wrapper"
     >
       <Input {...field} {...props} onChange={onChange} />
       <ErrorMessage>{errorMsg}</ErrorMessage>
