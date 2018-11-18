@@ -12,5 +12,5 @@ export default mongoose.model('List', listSchema);
 
 const { ObjectId } = mongoose.Types;
 ObjectId.prototype.valueOf = function () {
-  this.toString();
+  return this.toString();
 };

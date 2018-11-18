@@ -20,5 +20,5 @@ export default mongoose.model('Board', boardSchema);
 
 const { ObjectId } = mongoose.Types;
 ObjectId.prototype.valueOf = function () {
-  this.toString();
+  return this.toString();
 };
