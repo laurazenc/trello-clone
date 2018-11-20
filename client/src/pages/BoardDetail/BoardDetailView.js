@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import AddList from "./components/AddList";
+import EditBoardName from "./components/EditBoardNameForm";
 
 const Container = styled.div`
   width: inherit;
@@ -81,13 +82,23 @@ const BlankList = styled.div`
 
 export default class BoardDetailView extends Component {
   state = {
-    isFormVisible: false
+    isFormVisible: false,
+    editingFormName: false
   };
   openForm = () => {
     this.setState({ isFormVisible: true });
   };
   closeForm = () => {
     this.setState({ isFormVisible: false }, () => {
+      this.props.refetch();
+    });
+  };
+
+  startEditing = () => {
+    this.setState({ editingFormName: true });
+  };
+  stopEditing = () => {
+    this.setState({ editingFormName: false }, () => {
       this.props.refetch();
     });
   };
@@ -102,7 +113,17 @@ export default class BoardDetailView extends Component {
     return (
       <Container>
         <Row>
-          <Title>{data.getBoard.result.name}</Title>
+          {this.state.editingFormName ? (
+            <EditBoardName
+              value={data.getBoard.result.name}
+              stopEditing={this.stopEditing}
+              boardId={data.getBoard.result._id}
+            />
+          ) : (
+            <Title onClick={this.startEditing}>
+              {data.getBoard.result.name}
+            </Title>
+          )}
         </Row>
 
         <ListsContainer>
