@@ -12,6 +12,10 @@ export const authMiddleware = {
   },
   Mutation: {
     createBoard: isAuthenticated,
+    editBoard: isAuthenticated,
+    deleteBoard: isAuthenticated,
     createList: isAuthenticated,
+    editList: isAuthenticated,
+    deleteList: isAuthenticated,
   },
 };
