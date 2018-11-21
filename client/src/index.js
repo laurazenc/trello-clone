@@ -12,7 +12,7 @@ const theme = {
   primaryColor: "#4786FF",
   linkColor: "#4786FF",
   textColor: "#1B2437",
-  secondaryTextColor: "#9AA0A6",
+  secondaryTextColor: "#757A7D",
   backgroundColor: "#F5F7FA",
   iconColor: "#E0E2E5",
   errorColor: "#F1453D",

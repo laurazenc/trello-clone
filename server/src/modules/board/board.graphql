@@ -10,6 +10,11 @@ type ResultBoard {
   result: Board
 }
 
+type UpdatedBoard {
+  errors: [Error!]
+  result: Boolean
+}
+
 type Query {
   getUsersBoards: [Board!]
   getBoard(boardId: String!): ResultBoard!
@@ -17,4 +22,6 @@ type Query {
 
 type Mutation {
   createBoard(name: String!): ResultBoard!
+  editBoard(id: String!, name: String!): UpdatedBoard!
+  deleteBoard(id: String!): UpdatedBoard!
 }

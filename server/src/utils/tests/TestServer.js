@@ -101,6 +101,44 @@ export class TestServer {
     });
   }
 
+  async editBoard(id, name) {
+    return rp.post(this.url, {
+      ...this.options,
+      body: {
+        query: `
+          mutation {
+            editBoard(id: "${id}", name: "${name}") {
+              errors {
+                path
+                message
+              }
+              result
+            }
+          }
+        `,
+      },
+    });
+  }
+
+  async deleteBoard(id) {
+    return rp.post(this.url, {
+      ...this.options,
+      body: {
+        query: `
+          mutation {
+            deleteBoard(id: "${id}") {
+              errors {
+                path
+                message
+              }
+              result
+            }
+          }
+        `,
+      },
+    });
+  }
+
   async createList(name, boardId) {
     return rp.post(this.url, {
       ...this.options,
@@ -108,6 +146,44 @@ export class TestServer {
         query: `
           mutation {
             createList(name: "${name}", boardId: "${boardId}") {
+              errors {
+                path
+                message
+              }
+              result
+            }
+          }
+        `,
+      },
+    });
+  }
+
+  async editList(id, name) {
+    return rp.post(this.url, {
+      ...this.options,
+      body: {
+        query: `
+          mutation {
+            editList(id: "${id}", name: "${name}") {
+              errors {
+                path
+                message
+              }
+              result
+            }
+          }
+        `,
+      },
+    });
+  }
+
+  async deleteList(id) {
+    return rp.post(this.url, {
+      ...this.options,
+      body: {
+        query: `
+          mutation {
+            deleteList(id: "${id}") {
               errors {
                 path
                 message
