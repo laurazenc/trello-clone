@@ -63,7 +63,7 @@
 - [x] Users boards (Empty state, Get boards and create new boards)
 - [x] Board details
 - [x] Add lists to board
-- [ ] Edit lists
+- [x] Edit & delete lists
 - [ ] Add cards to lists
       ...
 
