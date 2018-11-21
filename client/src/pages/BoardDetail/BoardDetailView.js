@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import AddList from "./components/AddList";
 import EditBoardName from "./components/EditBoardNameForm";
+import EditListName from "./components/EditList/EditListNameForm";
+import ListMenu from "./components/EditList/ListMenu";
 
 const Container = styled.div`
   width: inherit;
@@ -18,6 +20,7 @@ const Title = styled.div`
   font-size: 20px;
   text-transform: uppercase;
   color: ${props => props.theme.textColor};
+  line-height: 54px;
 `;
 
 const ListsContainer = styled.div`
@@ -33,9 +36,9 @@ const ListWrapper = styled.div`
   margin: 24px 0;
 
   > .list {
-    width: 270px;
+    width: 300px;
     height: 100%;
-    margin: 0 5px;
+    margin: 0 24px 0 0;
     min-height: 90px;
   }
 `;
@@ -56,6 +59,20 @@ const ListName = styled.div`
   color: ${props => props.theme.textColor};
   font-size: 20px;
   font-size: 700;
+`;
+
+const ListNameWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  i {
+    color: ${props => props.theme.iconColor};
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 const BlankList = styled.div`
@@ -83,7 +100,9 @@ const BlankList = styled.div`
 export default class BoardDetailView extends Component {
   state = {
     isFormVisible: false,
-    editingFormName: false
+    editingFormName: false,
+    editingListName: false,
+    currentlyEditing: null
   };
   openForm = () => {
     this.setState({ isFormVisible: true });
@@ -98,7 +117,16 @@ export default class BoardDetailView extends Component {
     this.setState({ editingFormName: true });
   };
   stopEditing = () => {
-    this.setState({ editingFormName: false }, () => {
+    this.setState({ editingFormName: false, currentlyEditing: null }, () => {
+      this.props.refetch();
+    });
+  };
+
+  editListName = listId => {
+    this.setState({ editingListName: true, currentlyEditing: listId });
+  };
+  saveListName = () => {
+    this.setState({ editingListName: false }, () => {
       this.props.refetch();
     });
   };
@@ -131,7 +159,21 @@ export default class BoardDetailView extends Component {
             {result.lists.map(list => {
               return (
                 <List className="list" key={list._id}>
-                  <ListName>{list.name}</ListName>
+                  {this.state.editingListName &&
+                  this.state.currentlyEditing === list._id ? (
+                    <EditListName
+                      listId={list._id}
+                      value={list.name}
+                      saveListName={this.saveListName}
+                    />
+                  ) : (
+                    <ListNameWrapper>
+                      <ListName onClick={() => this.editListName(list._id)}>
+                        {list.name}
+                      </ListName>
+                      <ListMenu list={list} />
+                    </ListNameWrapper>
+                  )}
                 </List>
               );
             })}
