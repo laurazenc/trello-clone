@@ -13,6 +13,7 @@ const GETBOARD_QUERY = gql`
         lists {
           _id
           name
+          boardId
         }
       }
       errors {
@@ -43,3 +44,4 @@ class BoardDetail extends Component {
 }
 
 export default withMainScreenLayout(BoardDetail);
+export { GETBOARD_QUERY };
